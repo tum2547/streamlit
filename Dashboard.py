@@ -1,87 +1,39 @@
 import streamlit as st
 import pandas as pd
 import datetime
-
 # สร้างแดชบอร์ด
 st.title("ทดสอบการใช้งาน Streamlit")
-
 st.header("Header")
 st.subheader('Raw data')
-
 # แสดงความ
 st.write("testing")
-
 url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv"
-
 df = pd.read_csv(url)
 st.write(df.head(10))
 st.write(df.shape)
-
 df2 = df.groupby('species')['body_mass_g'].mean()
 st.write(df2)
 st.bar_chart(df2)
-
+#st.bar_chart(df2, x="species", y="body_mass_g",color="#0000FF")
 genre = st.radio(
-     "คุณชอบหนังอะไร",
-    ('การ์ตูน', 'ดร่าม่า', 'หนังสือพม'))
+     "แกเป็นใคร จับฉันมาทำไม",
+     ('Comedy','Drama','Documentary'))
 
 st.write(f"You selected {genre}")
 
-option = st.selectbox(
-   "How would you like to be contacted?",
-   ("Email", "Home phone", "Mobile phone"),
-   index=None,
-   placeholder="Select contact method...",
-)
+genre = st.selectbox(
+    'How would you like to be contacted?',
+    ('Email', 'Home phone', 'Mobile phone'))
+st.write('You selected:', genre)
 
-st.write('You selected:', option)
 
-title = st.text_input('Movie title', 'Life of Brian')
-st.write('The current movie title is', title)
+options = st.multiselect(
+    'What are your favorite colors',
+    ['Green', 'Yellow', 'Red', 'Blue'],
+    ['Yellow', 'Red'])
 
-# Store the initial value of widgets in session state
-if "visibility" not in st.session_state:
-    st.session_state.visibility = "visible"
-    st.session_state.disabled = False
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.checkbox("Disable text input widget", key="disabled")
-    st.radio(
-        "Set text input label visibility 👉",
-        key="visibility",
-        options=["visible", "hidden", "collapsed"],
-    )
-    st.text_input(
-        "Placeholder for the other text input widget",
-        "This is a placeholder",
-        key="placeholder",
-    )
-
-with col2:
-    text_input = st.text_input(
-        "Enter some text 👇",
-        label_visibility=st.session_state.visibility,
-        disabled=st.session_state.disabled,
-        placeholder=st.session_state.placeholder,
-    )
-
-    if text_input:
-        st.write("You entered: ", text_input)
-
-        number = st.number_input('Insert a number')
-st.write('The current number is ', number)
-number = st.number_input("Insert a number", value=None, placeholder="Type a number...")
-st.write('The current number is ', number)
-
-d = st.date_input("When's your birthday", datetime.date(2019, 7, 6))
-st.write('Your birthday is:', d)
-today = datetime.datetime.now()
-next_year = today.year + 1
-jan_1 = datetime.date(next_year, 1, 1)
-dec_31 = datetime.date(next_year, 12, 31)
-
+st.write('You selected:', options)
+##################################
 #text input
 title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
@@ -149,3 +101,4 @@ if img_file_buffer is not None:
     # Check the shape of torch_img:
     # Should output shape: torch.Size([channels, height, width])
     st.write(torch_img.shape)
+
