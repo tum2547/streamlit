@@ -21,7 +21,7 @@ st.write(df2)
 st.bar_chart(df2)
 
 genre = st.radio(
-     "What's your favorite movie genre",
-     ('Comedy', 'Drama', 'Documentary'))
+     "คุณชอบหนังอะไร",
+    ('การ์ตูน', 'ดร่าม่า', 'หนังสือพม'))
 
 st.write(f"You selected {genre}")
