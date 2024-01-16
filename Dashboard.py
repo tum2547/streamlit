@@ -82,19 +82,50 @@ next_year = today.year + 1
 jan_1 = datetime.date(next_year, 1, 1)
 dec_31 = datetime.date(next_year, 12, 31)
 
-d = st.date_input(
-    "Select your vacation for next year",
-    (jan_1, datetime.date(next_year, 1, 7)),
-    jan_1,
-    dec_31,
-    format="MM.DD.YYYY",
-)
+#text input
+title = st.text_input('Movie title', 'Life of Brian')
+st.write('The current movie title is', title)
 
+# Store the initial value of widgets in session state
+if "visibility" not in st.session_state:
+    st.session_state.visibility = "visible"
+    st.session_state.disabled = False
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.checkbox("Disable text input widget", key="disabled")
+    st.radio(
+        "Set text input label visibility 👉",
+        key="visibility",
+        options=["visible", "hidden", "collapsed"],
+    )
+    st.text_input(
+        "Placeholder for the other text input widget",
+        "This is a placeholder",
+        key="placeholder",
+    )
+
+with col2:
+    text_input = st.text_input(
+        "Enter some text 👇",
+        label_visibility=st.session_state.visibility,
+        disabled=st.session_state.disabled,
+        placeholder=st.session_state.placeholder,
+    )
+
+    if text_input:
+        st.write("You entered: ", text_input)
+
+number = st.number_input('Insert a number')
+st.write('The current number is ', number)
+
+d = st.date_input("When's your birthday", datetime.date(2019, 7, 6))
+st.write('Your birthday is:', d)
 
 t = st.time_input('Set an alarm for', datetime.time(8, 45))
 st.write('Alarm is set for', t)
-t = st.time_input('Set an alarm for', value=None)
-st.write('Alarm is set for', t)
+
 
 uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
@@ -105,8 +136,16 @@ for uploaded_file in uploaded_files:
 img_file_buffer = st.camera_input("Take a picture")
 
 if img_file_buffer is not None:
-    # To read image file buffer as bytes:
+    # To read image file buffer as a 3D uint8 tensor with PyTorch:
     bytes_data = img_file_buffer.getvalue()
-    # Check the type of bytes_data:
-    # Should output: <class 'bytes'>
-    st.write(type(bytes_data))
+    torch_img = torch.ops.image.decode_image(
+        torch.from_numpy(np.frombuffer(bytes_data, np.uint8)), 3
+    )
+
+    # Check the type of torch_img:
+    # Should output: <class 'torch.Tensor'>
+    st.write(type(torch_img))
+
+    # Check the shape of torch_img:
+    # Should output shape: torch.Size([channels, height, width])
+    st.write(torch_img.shape)
