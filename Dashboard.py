@@ -25,3 +25,4 @@ genre = st.radio(
     ('การ์ตูน', 'ดร่าม่า', 'หนังสือพม'))
 
 st.write(f"You selected {genre}")
+st.write('You selected:', option)
