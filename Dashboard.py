@@ -1,8 +1,9 @@
 import streamlit as st
 import pandas as pd
 import datetime
+import torch
 # สร้างแดชบอร์ด
-st,image("/image/1.jpg")
+st,image("/imag/1.jpg")
 st.title("ทดสอบการใช้งาน Streamlit")
 st.header("Header")
 st.subheader('Raw data')
