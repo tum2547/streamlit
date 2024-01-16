@@ -7,5 +7,3 @@ plotly==5.9.0
 openpyxl
 scikit-learn
 streamlit_lottie
-datetime
-pytorch

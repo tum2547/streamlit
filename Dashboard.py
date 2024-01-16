@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
-import datetime
-import torch
 
-# สร้างแดชบอร์ด
-st.title("ทดสอบการใช้งาน Streamlit")
 
 st.image('./img/download.jpg')
 
@@ -14,6 +10,7 @@ st.subheader('Raw data')
 # แสดงความ
 st.write("testing")
 
+"""
 url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv"
 
 df = pd.read_csv(url)
@@ -114,3 +111,4 @@ if img_file_buffer is not None:
     # Check the shape of torch_img:
     # Should output shape: torch.Size([channels, height, width])
     #st.write(torch_img.shape)
+    """
