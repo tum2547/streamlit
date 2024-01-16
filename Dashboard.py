@@ -25,4 +25,12 @@ genre = st.radio(
     ('การ์ตูน', 'ดร่าม่า', 'หนังสือพม'))
 
 st.write(f"You selected {genre}")
+
+option = st.selectbox(
+   "How would you like to be contacted?",
+   ("Email", "Home phone", "Mobile phone"),
+   index=None,
+   placeholder="Select contact method...",
+)
+
 st.write('You selected:', option)
