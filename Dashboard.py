@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import datetime
 
 # สร้างแดชบอร์ด
 st.title("ทดสอบการใช้งาน Streamlit")
@@ -68,3 +69,44 @@ with col2:
 
     if text_input:
         st.write("You entered: ", text_input)
+
+        number = st.number_input('Insert a number')
+st.write('The current number is ', number)
+number = st.number_input("Insert a number", value=None, placeholder="Type a number...")
+st.write('The current number is ', number)
+
+d = st.date_input("When's your birthday", datetime.date(2019, 7, 6))
+st.write('Your birthday is:', d)
+today = datetime.datetime.now()
+next_year = today.year + 1
+jan_1 = datetime.date(next_year, 1, 1)
+dec_31 = datetime.date(next_year, 12, 31)
+
+d = st.date_input(
+    "Select your vacation for next year",
+    (jan_1, datetime.date(next_year, 1, 7)),
+    jan_1,
+    dec_31,
+    format="MM.DD.YYYY",
+)
+d
+
+t = st.time_input('Set an alarm for', datetime.time(8, 45))
+st.write('Alarm is set for', t)
+t = st.time_input('Set an alarm for', value=None)
+st.write('Alarm is set for', t)
+
+uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+for uploaded_file in uploaded_files:
+    bytes_data = uploaded_file.read()
+    st.write("filename:", uploaded_file.name)
+    st.write(bytes_data)
+
+img_file_buffer = st.camera_input("Take a picture")
+
+if img_file_buffer is not None:
+    # To read image file buffer as bytes:
+    bytes_data = img_file_buffer.getvalue()
+    # Check the type of bytes_data:
+    # Should output: <class 'bytes'>
+    st.write(type(bytes_data))
