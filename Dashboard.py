@@ -2,40 +2,51 @@ import streamlit as st
 import pandas as pd
 import datetime
 import torch
+
 # สร้างแดชบอร์ด
-st,image("/imag/1.jpg")
 st.title("ทดสอบการใช้งาน Streamlit")
+
+st.image('./img/kairung.jpg')
+
 st.header("Header")
 st.subheader('Raw data')
+
 # แสดงความ
 st.write("testing")
+
 url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv"
+
 df = pd.read_csv(url)
 st.write(df.head(10))
 st.write(df.shape)
+
 df2 = df.groupby('species')['body_mass_g'].mean()
+df3=df2.T
 st.write(df2)
+st.write(df3.head())
 st.bar_chart(df2)
-#st.bar_chart(df2, x="species", y="body_mass_g",color="#0000FF")
+
 genre = st.radio(
-     "แกเป็นใคร จับฉันมาทำไม",
-     ('Comedy','Drama','Documentary'))
+     "คุณชอบหนังแบบไหน",
+     ('ตลก', 'เศร้า', 'สารคดี'))
 
-st.write(f"You selected {genre}")
+st.write(f"หนังที่คุณชอบ คือ {genre}")
 
-genre = st.selectbox(
+# select
+option = st.selectbox(
     'How would you like to be contacted?',
     ('Email', 'Home phone', 'Mobile phone'))
-st.write('You selected:', genre)
 
+st.write('You selected:', option)
 
+# Multi select
 options = st.multiselect(
     'What are your favorite colors',
     ['Green', 'Yellow', 'Red', 'Blue'],
     ['Yellow', 'Red'])
 
 st.write('You selected:', options)
-##################################
+
 #text input
 title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
@@ -102,5 +113,4 @@ if img_file_buffer is not None:
 
     # Check the shape of torch_img:
     # Should output shape: torch.Size([channels, height, width])
-    st.write(torch_img.shape)
-
+    #st.write(torch_img.shape)
