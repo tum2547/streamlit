@@ -89,7 +89,7 @@ d = st.date_input(
     dec_31,
     format="MM.DD.YYYY",
 )
-d
+
 
 t = st.time_input('Set an alarm for', datetime.time(8, 45))
 st.write('Alarm is set for', t)
