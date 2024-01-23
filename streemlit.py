@@ -13,3 +13,9 @@ with col2:
 with col3:
    st.header("An owl")
    st.image("https://c.pxhere.com/photos/73/a2/potato_flowers_petals_stamens_flower_plant_yellow_rosa_nature-1288559.jpg!d")
+
+#import pandas as pd
+df=pd.read_csv("./data/iris.csv")
+st.write(df.head(10))
+
+st.write(df.groupby('variety').mean())
