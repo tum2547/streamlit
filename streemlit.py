@@ -27,7 +27,7 @@ chart_data = pd.DataFrame(
    {
        "ประเภทดอกไม้": df['variety'],
        "ความกว้าง": df['sepal.width'],
-       "คสามยาว": df['sepal.length']
+       "ความยาว": df['sepal.length']
     
     }
 )
