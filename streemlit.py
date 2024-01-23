@@ -17,6 +17,7 @@ with col3:
 
 
 df=pd.read_csv("./data/iris.csv")
+st.button("แสดงข้อมูลตัวอย่าง")
 st.write(df.head(10))
 
 st.write(df.groupby('variety').mean())
