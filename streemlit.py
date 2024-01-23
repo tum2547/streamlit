@@ -64,3 +64,15 @@ ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
 ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 st.pyplot(fig1)
+
+chart = alt.Chart(source).mark_tick().encode(
+        x='Horsepower:Q',
+        y='Cylinders:O'
+    )
+
+tab1, tab2 = st.tabs(["Streamlit theme (default)", "Altair native theme"])
+
+with tab1:
+        st.altair_chart(chart, theme="streamlit", use_container_width=True)
+with tab2:
+        st.altair_chart(chart, theme=None, use_container_width=True)
