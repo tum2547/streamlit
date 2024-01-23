@@ -1,5 +1,5 @@
 import streamlit as st
-
+import pandas as pd
 
 col1, col2, col3 = st.columns(3)
 
@@ -15,7 +15,7 @@ with col3:
    st.header("An owl")
    st.image("https://c.pxhere.com/photos/73/a2/potato_flowers_petals_stamens_flower_plant_yellow_rosa_nature-1288559.jpg!d")
 
-import pandas as pd
+
 df=pd.read_csv("./data/iris.cav")
 st.write(df.head(10))
 
@@ -25,11 +25,11 @@ chart_data.columns
 
 chart_data = pd.DataFrame(
    {
-       "col1": df['variety'],
-       "col2": df['sepal.width'],
-       "col3": df['sepal.length']
+       "ประเภทดอกไม้": df['variety'],
+       "ความกว้าง": df['sepal.width'],
+       "คสามยาว": df['sepal.length']
     
     }
 )
 
-st.bar_chart(chart_data, x="col1", y=["col2","col3"], color=["#FF0000", "#0000FF"])
+st.bar_chart(chart_data, x="ประเภทดอกไม้", y=["col2","col3"], color=["#FF0000", "#0000FF"])
