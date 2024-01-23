@@ -19,3 +19,16 @@ df=pd.read_csv("./data/iris.cav")
 st.write(df.head(10))
 
 st.write(df.groupby('variety').mean())
+chart_data=df.groupby('variety').mean()
+chart_data.columns
+
+chart_data = pd.DataFrame(
+   {
+       "col1": df['variety'],
+       "col2": df['sepal.width'],
+       "col3": df['sepal.length']
+    
+    }
+)
+
+st.bar_chart(chart_data, x="col1", y=["col2","col3"], color=["#FF0000", "#0000FF"])
