@@ -32,4 +32,4 @@ chart_data = pd.DataFrame(
     }
 )
 
-st.bar_chart(chart_data, x="ประเภทดอกไม้", y=["col2","col3"], color=["#FF0000", "#0000FF"])
+st.bar_chart(chart_data, x="ประเภทดอกไม้", y=["ความกว้าง","ความยาว"], color=["#FF0000", "#0000FF"])
