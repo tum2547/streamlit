@@ -29,7 +29,7 @@ if(st.button("แสดงข้อมูลสถิติิ")):
     st.write(df.head(10))
     st.button("ไม่แสดงข้อมูลสถิติ")
 else:
-   st.st.button("ไม่แสดงข้อมูลสถิติ")
+    st.button("ไม่แสดงข้อมูลสถิติ")
 
 
 st.write(df.groupby('variety').mean())
