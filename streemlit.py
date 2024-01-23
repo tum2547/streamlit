@@ -51,7 +51,7 @@ import matplotlib.pyplot as plt
 
 # Pie chart, where the slices will be ordered and plotted counter-clockwise:
 labels = 'ssepal.width', 'sepal.length', 'petal.width', 'petal.length'
-x1=df['ssepal.width'].mean()
+x1=df['sepal.width'].mean()
 x2=df['sepal.length'].mean()
 x3=df['petal.width'].mean()
 x4=df['petal.length'].mean()
